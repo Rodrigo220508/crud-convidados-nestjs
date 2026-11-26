@@ -28,10 +28,7 @@ export class ConvidadosService {
     return convidado;
   }
 
-  replace(
-    id: number,
-    dados: { nome: string; idade: number; email?: string },
-  ) {
+  replace(id: number, dados: { nome: string; idade: number; email?: string }) {
     const atual = this.findOne(id);
     const i = this.convidados.indexOf(atual);
 
@@ -55,5 +52,10 @@ export class ConvidadosService {
     this.convidados.push(novo);
 
     return novo;
+  }
+  remove(id: number) {
+    this.findOne(id);
+
+    this.convidados = this.convidados.filter((item) => item.id !== id);
   }
 }

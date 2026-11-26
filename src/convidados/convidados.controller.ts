@@ -1,5 +1,17 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
+
 import { CreateConvidadoDto } from './dto/create-convidado.dto.js';
+import { UpdateConvidadoDto } from './dto/update-convidado.dto.js';
 import { ConvidadosService } from './convidados.service.js';
 
 @Controller('convidados')
@@ -26,5 +38,24 @@ export class ConvidadosController {
       mensagem: `Convidado ${dados.nome} recebido!`,
       dados: convidado,
     };
+  }
+
+  @Put(':id')
+  substituir(
+    @Param('id') id: string,
+    @Body() dados: { nome: string; idade: number; email?: string },
+  ) {
+    return this.service.replace(+id, dados);
+  }
+
+  @Patch(':id')
+  atualizar(@Param('id') id: string, @Body() dados: UpdateConvidadoDto) {
+    return this.service.update(+id, dados);
+  }
+
+  @Delete(':id')
+  @HttpCode(204)
+  remover(@Param('id') id: string) {
+    this.service.remove(+id);
   }
 }
