@@ -4,10 +4,11 @@ import { AppService } from './app.service.js';
 import { ConvidadosController } from './convidados/convidados.controller.js';
 import { ConvidadosService } from './convidados/convidados.service.js';
 import { LivrosController } from './livros/livros.controller.js';
+import { MediaController } from './media/media.controller.js';
 
 @Module({
   imports: [],
-  controllers: [AppController, ConvidadosController, LivrosController],
+  controllers: [AppController, ConvidadosController, LivrosController, MediaController],
   providers: [AppService, ConvidadosService],
 })
 export class AppModule {}
